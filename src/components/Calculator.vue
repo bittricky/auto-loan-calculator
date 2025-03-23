@@ -142,6 +142,17 @@ watch(selectedModel, async (newModel) => {
   }
 })
 
+const calculateMonthlyPayment = (principal: number, interestRate: number, loanTerm: number) => {
+  const monthlyInterestRate = (interestRate / 100) / 12
+
+  if (monthlyInterestRate === 0) {
+    return principal / loanTerm
+  }
+
+  // The Math for Auto Loans: P * r * (1 + r)^n / ((1 + r)^n - 1)
+  return principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTerm) / (Math.pow(1 + monthlyInterestRate, loanTerm) - 1)
+}
+
 const profitMargin = computed(() => {
   const profit = sellingPrice.value - vehiclePrice.value
   return Math.round((profit / vehiclePrice.value) * 100)
@@ -249,6 +260,21 @@ const formatCurrency = (value: number) => {
               />
             </div>
           </div>
+
+          <div>
+            <label class="block text-sm text-gray-600 mb-2">Interest Rate (%)</label>
+            <div class="relative">
+                <input
+                type="range"
+                v-model="interestRate"
+                min="0"
+                max="20"
+                step="0.25"
+                class="w-full h-2 bg-red-600 rounded-lg appearance-none cursor-pointer"
+                />
+                <div class="mt-2 text-sm text-gray-600">{{ interestRate }}%</div>
+            </div>
+        </div>  
 
           <div>
             <label class="block text-sm text-gray-600 mb-2">Loan Duration</label>
