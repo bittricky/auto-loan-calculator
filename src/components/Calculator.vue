@@ -143,14 +143,39 @@ watch(selectedModel, async (newModel) => {
 })
 
 const calculateMonthlyPayment = (principal: number, interestRate: number, loanTerm: number) => {
-  const monthlyInterestRate = (interestRate / 100) / 12
+  const monthlyRate = (interestRate / 100) / 12
 
-  if (monthlyInterestRate === 0) {
+  if (monthlyRate === 0) {
     return principal / loanTerm
   }
 
   // The Math for Auto Loans: P * r * (1 + r)^n / ((1 + r)^n - 1)
-  return principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTerm) / (Math.pow(1 + monthlyInterestRate, loanTerm) - 1)
+  return principal * monthlyRate * Math.pow(1 + monthlyRate, loanTerm) / (Math.pow(1 + monthlyRate, loanTerm) - 1)
+}
+
+const generateAmortizationSchedule = (principle: number, interestRate: number, loanTerm: number) => {
+    const monthlyRate = (interestRate / 100) / 12
+    const monthlyPayment = calculateMonthlyPayment(principle, interestRate, loanTerm)
+
+    let schedule = []
+    let balance = principle
+
+    for (let month = 1; month <= loanTerm; month++) {
+        const interestPayment = balance * monthlyRate
+        const principalPayment = monthlyPayment - interestPayment
+
+        balance -= principalPayment;
+
+        schedule.push({
+            month,
+            payment: monthlyPayment, 
+            principalPayment,
+            interestPayment,
+            remainingBalance: balance > 0 ? balance : 0
+        })
+    }
+  
+    return schedule
 }
 
 const profitMargin = computed(() => {
