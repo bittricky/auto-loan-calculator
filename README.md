@@ -27,8 +27,12 @@ As of 2024–2025, the U.S. auto loan market is showing signs of strain, especia
 - At least **20%** of these consumers owed **more than $10,000** over their vehicle’s actual value.
 - This trend increases financial risk and may lead to further delinquencies or loan rollovers into new vehicle purchases.
 
+#### References:
+
 [ref: lending tree](https://www.lendingtree.com/auto/debt-statistics/)
+
 [ref: trading economics](https://tradingeconomics.com/united-states/debt-balance-auto-loans)
+
 [ref: bloomberg](https://www.bloomberg.com/news/articles/2025-03-06/late-car-loan-payments-auto-delinquencies-spike-to-highest-level-in-decades)
 
 ## Features
