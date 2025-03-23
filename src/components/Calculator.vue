@@ -2,6 +2,9 @@
 
 import { ref, computed, onMounted, watch } from 'vue'
 import { Switch } from '@headlessui/vue'
+import { Chart, registerables } from 'chart.js';
+
+Chart.register(...registerables);
 
 interface CarMake {
   MakeId: number
@@ -30,8 +33,14 @@ const selectedYear = ref(new Date().getFullYear())
 const vehiclePrice = ref(7000)
 const sellingPrice = ref(9000)
 const downPayment = ref(2000)
+const interestRate = ref(5.9)
 const loanTerm = ref(3)
 const isAutoFinance = ref(true)
+const monthlyPayment = computed(() => calculateMonthlyPayment(
+    sellingPrice.value - downPayment.value,
+    interestRate.value,
+    loanTerm.value
+))
 
 onMounted(async () => {
   try {
@@ -178,6 +187,19 @@ const generateAmortizationSchedule = (principle: number, interestRate: number, l
     return schedule
 }
 
+const createPaymentChart = () => {
+    const ctx = document.getElementById('paymentChart').getContext('2d')
+
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Principal', 'Interest', 'Fees'],
+            datasets: [principal, totalInterest, fees],
+            backgroundColor: ['#dc2626', '#f59e0b', '#9ca3af']
+        }
+    })
+}
+
 const profitMargin = computed(() => {
   const profit = sellingPrice.value - vehiclePrice.value
   return Math.round((profit / vehiclePrice.value) * 100)
@@ -285,6 +307,10 @@ const formatCurrency = (value: number) => {
               />
             </div>
           </div>
+
+          <div class="text-lg font-semibold">
+  Monthly Payment: {{ formatCurrency(monthlyPayment) }}
+</div>
 
           <div>
             <label class="block text-sm text-gray-600 mb-2">Interest Rate (%)</label>
