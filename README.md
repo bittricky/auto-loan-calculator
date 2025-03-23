@@ -23,7 +23,7 @@ As of 2024–2025, the U.S. auto loan market is showing signs of strain, especia
 - This is the highest delinquency rate for this group in decades, highlighting the vulnerability of lower-credit consumers.
 
 ### Negative Equity on the Rise
-- Nearly **1 in 4** U.S. consumers trading in vehicles in Q3 2024 had **negative equity**.
+- Nearly **1 in 4** U.S. consumers trading in vehicles in Q3 2024 had [**negative equity**](https://www.investopedia.com/terms/n/negativeequity.asp).
 - At least **20%** of these consumers owed **more than $10,000** over their vehicle’s actual value.
 - This trend increases financial risk and may lead to further delinquencies or loan rollovers into new vehicle purchases.
 
