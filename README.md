@@ -11,7 +11,7 @@ Auto loans, also known as car loans, are financial agreements that allow individ
 As of 2024–2025, the U.S. auto loan market is showing signs of strain, especially among [subprime borrowers](https://www.investopedia.com/terms/s/subprime-borrower.asp). Key developments include:
 
 ### Rising Auto Loan Debt
-- Total U.S. auto loan debt reached **$1.66 trillion** in Q4 2024, up from $1.64 trillion in the previous quarter and is the third largest debt slightly beating out U.S Student Loans.
+- Total U.S. auto loan debt reached **$1.66 trillion** in Q4 2024, up from $1.64 trillion in the previous quarter and is the third largest debt slightly beating out Student Loans in the U.S.
 - This continued growth reflects both rising vehicle prices and extended loan terms.  
 
 ### Rising Delinquency Rates
