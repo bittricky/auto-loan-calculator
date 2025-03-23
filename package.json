@@ -1,5 +1,8 @@
 {
   "name": "auto-loan-calculator",
+  "description": "An auto loan calculator",
+  "author": "Mitul Patel",
+  "license": "MIT",
   "private": true,
   "version": "0.0.0",
   "type": "module",
