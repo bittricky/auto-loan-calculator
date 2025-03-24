@@ -35,7 +35,9 @@ As of 2024–2025, the U.S. auto loan market is showing signs of strain, especia
 
 [ref: bloomberg](https://www.bloomberg.com/news/articles/2025-03-06/late-car-loan-payments-auto-delinquencies-spike-to-highest-level-in-decades)
 
-[ref: investopedia - general](https://www.investopedia.com/terms/n/negativeequity.asp)
+[ref: investopedia - general negative equity](https://www.investopedia.com/terms/n/negativeequity.asp)
+
+[ref: investopedia - amortization](https://www.investopedia.com/terms/a/amortization.asp)
 
 ## Features
 
