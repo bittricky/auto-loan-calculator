@@ -67,6 +67,9 @@ As of 2024–2025, the U.S. auto loan market is showing signs of strain, especia
   - Interactive charts using Chart.js
   - Breakdown of principal, interest, and fees
 
+- **Export to CSV**:
+  - Export the amortization schedule based on the auto loan calculation to a CSV file
+
 ## Technical Stack
 
 - **Frontend Framework**: Vue 3 with Composition API
