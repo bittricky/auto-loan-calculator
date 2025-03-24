@@ -273,6 +273,53 @@ const calculateTotalInterest = (principal: number, monthlyPayment: number, loanT
   return (monthlyPayment * loanTerm) - principal
 }
 
+const exportToCSV = () => {
+  const headers = ['Month', 'Payment', 'Principal', 'Interest', 'Remaining Balance'];
+  const csvContent = [
+    headers.join(','),
+    ...amortizationSchedule.value.map(payment => [
+      payment.month,
+      payment.payment.toFixed(2),
+      payment.principalPayment.toFixed(2),
+      payment.interestPayment.toFixed(2),
+      payment.remainingBalance.toFixed(2)
+    ].join(','))
+  ].join('\n');
+
+  const summary = [
+    '\n\nLoan Summary',
+    `Vehicle,${selectedMake.value} ${selectedModel.value} ${selectedYear.value}`,
+    `Auto Price,$${autoPrice.value.toFixed(2)}`,
+    `Down Payment,$${downPayment.value.toFixed(2)}`,
+    `Trade-in Value,$${tradeInValue.value.toFixed(2)}`,
+    `Amount Owed on Trade-in,$${amountOwedOnTradeIn.value.toFixed(2)}`,
+    `Cash Incentives,$${cashIncentives.value.toFixed(2)}`,
+    `Sales Tax,${salesTax.value}%`,
+    `Title & Registration Fees,$${titleAndRegistrationFees.value.toFixed(2)}`,
+    `Loan Amount,$${loanAmount.value.toFixed(2)}`,
+    `Interest Rate,${interestRate.value}%`,
+    `Loan Term,${loanTerm.value} months`,
+    `Monthly Payment,$${monthlyPayment.value.toFixed(2)}`,
+    `Total Interest,$${totalInterest.value.toFixed(2)}`,
+    `Total Loan Cost,$${totalLoanCost.value.toFixed(2)}`
+  ].join('\n');
+
+  const fullCSVContent = csvContent + summary;
+
+  const blob = new Blob([fullCSVContent], { type: 'text/csv;charset=utf-8;' });
+  
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  
+  const fileName = `${selectedMake.value}_${selectedModel.value}_${selectedYear.value}_loan_calculation.csv`;
+  link.setAttribute('href', url);
+  link.setAttribute('download', fileName);
+  
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
 const formatCurrency = (value: number) => {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -540,6 +587,16 @@ const formatCurrency = (value: number) => {
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" :class="{ 'rotate-180': showAmortizationSchedule }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
+            </button>
+            <br />
+            <button 
+              @click="exportToCSV" 
+              class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center mb-6"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Export to CSV
             </button>
           </div>
         </div>
